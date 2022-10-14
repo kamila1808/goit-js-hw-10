@@ -20,11 +20,26 @@ body {
 }
 
 .country-list{
- 
+  list-style: none;
 }
 
 .country-list__item {
-  list-style: none;
   display: flex;
   align-items: center;
 }
+
+.country-list__item-image {
+  margin-right: 7px;
+}
+
+.country-list__item-name {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.country-info__image{
+  margin-right: 7px;
+}
+
+
+

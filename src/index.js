@@ -40,8 +40,8 @@ function onFetchError() {
 function renderCountryList(data) {
   return data.map(country => {
     return `<li class="country-list__item">
-    <img src="${country.flags.svg}" alt="Flag" width="35" height="25"></img>
-    <h2 class "country-list__item-name">${country.name.official}</h2>
+    <img class="country-list__item-image"src="${country.flags.svg}" alt="Flag" width="35" height="30"></img>
+    <h2 class="country-list__item-name">${country.name.official}</h2>
     </li>`
 }).join('');
 }
@@ -49,10 +49,9 @@ function renderCountryList(data) {
 // 1 страна
 function renderOneCountry(data) {
   return data.map(country => {
-    return `<img src="${country.flags.svg}" alt="Flag" width="650" height="400"></img>
-            <h2 class="country-info__name">${country.name.official}</h2>
-        <p class = "country-info__description">Capital:${country.capital}</p>
-        <p class = "country-info__description">Population:${country.population }</p>
-        <p class = "country-info__description">Languages:${Object.values(country.languages)}</p>`
+    return `<h2 class="country-info__title"><img class="country-info__image" src="${country.flags.svg}" alt="Flag" width="50" height="35"></img>${country.name.official}</h2>
+        <p class="country-info__description">Capital:${country.capital}</p>
+        <p class="country-info__description">Population:${country.population }</p>
+        <p class="country-info__description">Languages:${Object.values(country.languages)}</p>`
 }).join('');
 }
