@@ -12,9 +12,7 @@ inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch() {
   const name = inputEl.value.trim();
-  if (name === '') {
-    return (countryListEl.innerHTML = ''), (countryInfoEl.innerHTML = '');
-  }
+  
   fetchCountries(name)
     .then(country => {
       countryListEl.innerHTML = '';
