@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
 const DEBOUNCE_DELAY = 300;
-const inputEl = document.querySelector("#search-box");
+const inputEl = document.querySelector('#search-box');
 const countryListEl = document.querySelector('.country-list');
 const countryInfoEl = document.querySelector('.country-info');
 
@@ -12,11 +12,13 @@ inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch() {
   const name = inputEl.value.trim();
-  
+  if (name === '') {
+    onFetchClear();
+    return;
+  }
   fetchCountries(name)
     .then(country => {
-      countryListEl.innerHTML = '';
-      countryInfoEl.innerHTML = '';
+      onFetchClear();
       if (country.length === 1) {
         countryInfoEl.insertAdjacentHTML('beforeend', renderOneCountry(country));
       } else if (country.length >= 10) {
@@ -26,7 +28,7 @@ function onSearch() {
       }
     })
     .catch(onFetchError);
-}
+
 
 function onFetchSpecific() {
   Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
@@ -55,3 +57,9 @@ function renderOneCountry(data) {
         <p class="country-info__description">Languages:${Object.values(country.languages)}</p>`
 }).join('');
 }
+
+// чистка страницы
+function onFetchClear() {
+  countryInfoEl.innerHTML = '';
+  countryListEl.innerHTML = '';
+};
